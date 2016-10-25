@@ -33,7 +33,7 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/chat', function(req, res){
-  res.render('index', {'users': users.find()});
+  res.render('index', {'users': users.find(), 'you': req.session.username});
 });
 
 io.on('connection', function(socket){

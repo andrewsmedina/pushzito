@@ -12,11 +12,15 @@
   ul li { padding: 5px 10px; }
   ul li:nth-child(odd) { background: #eee; }
   .messages { width: 80%; float: left; }
-  .users { width: 20%; float: right; }
+  .users { width: 20%; float: right; margin-top: 30px; }
+  .messages .header { height: 30px; position: fixed; width: 100%; background-color: black; color: white; padding: 5px; }
   </style>
 </head>
 <body>
   <div class="messages">
+    <div class="header">
+      You ({{ you }}) is talking with: (#user)
+    </div>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
