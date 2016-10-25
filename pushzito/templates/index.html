@@ -8,6 +8,10 @@
   socket.on('connect', function() {
     socket.emit('my event', {data: 'I\'m connected!'});
   });
+  $('form').submit(function(){
+    socket.emit('chat message', $('#m').val());
+    return false;
+  });
   </script>
 </head>
 <body>
