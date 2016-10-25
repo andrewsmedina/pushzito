@@ -4,6 +4,10 @@ var io = require('socket.io')(http);
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var loki = require('lokijs');
+var mustacheExpress = require('mustache-express');
+
+app.engine('mustache', mustacheExpress());
+app.set('view engine', 'mustache');
 
 app.use(bodyParser.urlencoded());
 app.use(session({
@@ -29,8 +33,7 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/chat', function(req, res){
-  console.log("users 2:", req.session.username);
-  res.sendFile(__dirname + '/index.html');
+  res.render('index', {'users': users.find()});
 });
 
 io.on('connection', function(socket){

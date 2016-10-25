@@ -24,8 +24,9 @@
   </div>
   <div class="users">
     <ul>
-      <li>user1</li>
-      <li>user2</li>
+      {{#users}}
+      <li>{{name}}</li>
+      {{/users}}
     </ul>
   </div>
   <script src="/socket.io/socket.io.js"></script>
