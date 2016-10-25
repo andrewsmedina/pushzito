@@ -2,7 +2,15 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
+app.get('/login', function(req, res){
+  res.sendFile(__dirname + '/login.html');
+});
+
+app.post('/login', function(req, res) {
+  res.redirect('/chat')
+});
+
+app.get('/chat', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
