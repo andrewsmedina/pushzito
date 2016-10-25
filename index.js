@@ -3,6 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var loki = require('lokijs');
 
 app.use(bodyParser.urlencoded());
 app.use(session({
@@ -11,24 +12,24 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+var db = new loki('loki.json');
+var users = db.addCollection('users');
+
 app.get('/login', function(req, res){
   res.sendFile(__dirname + '/login.html');
 });
 
 app.post('/login', function(req, res) {
-  var users = req.session.users;
+  var username = req.body.username;
+  req.session.username = username;
 
-  if (!users) {
-    users = req.session.users = [];
-  }
-
-  users.push(req.body.username);
+  users.insert({name: username});
 
   res.redirect('/chat')
 });
 
 app.get('/chat', function(req, res){
-  console.log("users 2:", req.session.users);
+  console.log("users 2:", req.session.username);
   res.sendFile(__dirname + '/index.html');
 });
 
