@@ -1,9 +1,12 @@
 from flask import Flask, render_template
 from flask.ext.pymongo import PyMongo
+from flask_socketio import SocketIO
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
 mongo = PyMongo(app)
+socketio = SocketIO(app)
 
 
 @app.route("/")
@@ -13,4 +16,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    socketio.run(app)
