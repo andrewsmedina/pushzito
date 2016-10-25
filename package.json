@@ -1,0 +1,19 @@
+{
+  "name": "pushzito",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewsmedina/pushzito.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewsmedina/pushzito/issues"
+  },
+  "homepage": "https://github.com/andrewsmedina/pushzito#readme"
+}
