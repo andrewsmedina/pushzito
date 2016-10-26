@@ -33,6 +33,10 @@ app.post('/', function(req, res) {
 });
 
 app.get('/chat', function(req, res){
+  if (!req.session.username) {
+    res.redirect('/');
+    return;
+  }
   res.render('index', {'users': users.find(), 'you': req.session.username});
 });
 
