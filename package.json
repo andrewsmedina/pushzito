@@ -24,5 +24,8 @@
     "mustache": "^2.2.1",
     "mustache-express": "^1.2.2",
     "socket.io": "^1.5.1"
+  },
+  "engines": {
+    "node": "7.0.0"
   }
 }
