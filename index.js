@@ -19,11 +19,11 @@ app.use(session({
 var db = new loki('loki.json');
 var users = db.addCollection('users');
 
-app.get('/login', function(req, res){
+app.get('/', function(req, res){
   res.sendFile(__dirname + '/login.html');
 });
 
-app.post('/login', function(req, res) {
+app.post('/', function(req, res) {
   var username = req.body.username;
   req.session.username = username;
 
