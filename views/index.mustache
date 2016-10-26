@@ -29,7 +29,7 @@
   <div class="users">
     <ul>
       {{#users}}
-      <li>{{name}}</li>
+      <li id="user-{{name}}">{{name}}</li>
       {{/users}}
     </ul>
   </div>
@@ -37,13 +37,19 @@
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
   var socket = io();
+  var users = {};
   $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
+    socket.emit('chat message', {user: '{{ you }}', msg: $('#m').val()});
     $('#m').val('');
     return false;
   });
   socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
+    if (!users[msg.user]) {
+      users[msg.user] = 0;
+    }
+    users[msg.user]++;
+    $('#user-'+msg.user).html(msg.user + ' (' + users[msg.user] + ')');
+    $('#messages').append($('<li>').text(msg.msg));
   });
   </script>
 </body>
